@@ -1,0 +1,893 @@
+
+📘 Section 1 — Basics & Document Structure (tags + per-tag code with comments)
+
+<!DOCTYPE html>
+
+Declares the document as HTML5. Must be the first line in the file so browsers use modern parsing mode.
+
+<!-- <!DOCTYPE html> must appear at the very top to enable standards mode -->
+<!DOCTYPE html>
+
+
+---
+
+<html>
+
+The root element. Important attributes: lang (language), dir (text direction), class, id.
+
+<!-- <html> is the root. lang helps screen readers/search engines, dir controls direction -->
+<html lang="en" dir="ltr" class="page-root" id="doc-root">
+  <!-- Document content goes here -->
+</html>
+
+
+---
+
+<head>
+
+Container for metadata: title, meta tags, links to CSS, scripts that should load before body, etc.
+
+<!-- <head> holds metadata and references (not visible content) -->
+<head>
+  <!-- meta, title, link, script go here -->
+</head>
+
+
+---
+
+<meta>
+
+Provides metadata. Common attributes: charset, name + content, http-equiv, viewport.
+
+<!-- Character encoding (must be early) -->
+<meta charset="utf-8">
+
+<!-- SEO / description -->
+<meta name="description" content="Short page description">
+
+<!-- Responsive layout on mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- http-equiv can act like an HTTP header (use sparingly) -->
+<meta http-equiv="refresh" content="30"> <!-- reloads after 30s -->
+
+
+---
+
+<title>
+
+Sets the page title shown in the browser tab and used by search engines.
+
+<!-- Title text appears on the browser tab and in bookmarks -->
+<title>My Page Title</title>
+
+
+---
+
+<base>
+
+Sets a base URL for relative links; rarely used but handy for documents with many relative URLs. Attributes: href, target.
+
+<!-- base affects how relative URLs are resolved -->
+<base href="https://example.com/docs/" target="_blank">
+<!-- Now <a href="page.html"> loads https://example.com/docs/page.html and opens in _blank by default -->
+
+
+---
+
+<link>
+
+Links external resources. Important attributes: rel, href, type, media, sizes, as, crossorigin.
+
+<!-- Link to stylesheet -->
+<link rel="stylesheet" href="styles.css" type="text/css" media="screen">
+
+<!-- Favicon with size -->
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+
+<!-- Preload critical resources -->
+<link rel="preload" href="main.js" as="script">
+
+<!-- Preconnect to a resource origin (performance hint) -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+---
+
+<style>
+
+Inline CSS block. Attribute media lets you target specific media (screen/print).
+
+<!-- Inline CSS for quick styles (prefer external .css for real projects) -->
+<style media="screen">
+  body { font-family: Arial, sans-serif; }
+  .lead { font-size: 1.1rem; }
+</style>
+
+
+---
+
+<script>
+
+Includes JS inline or external. Important attributes: src, type, async, defer, nomodule, integrity, crossorigin, nonce.
+
+<!-- External script loaded after HTML parsing (defer preserves order) -->
+<script src="app.js" defer integrity="sha384-abc..." crossorigin="anonymous"></script>
+
+<!-- Inline module script (use when you're using ES modules) -->
+<script type="module">
+  // ES module code here
+  import { init } from './module.js';
+  init();
+</script>
+
+<!-- Async script: fetched & executed immediately when ready (order not guaranteed) -->
+<script src="analytics.js" async></script>
+
+<!-- nomodule: only run in browsers that DO NOT support modules (legacy fallback) -->
+<script nomodule src="legacy.js"></script>
+
+
+---
+
+<noscript>
+
+Shown only if JavaScript is disabled. Useful to warn users or provide fallback content.
+
+<noscript>
+  <!-- Shown when JS is disabled -->
+  <p>JavaScript is required for some functionality — enable it for best experience.</p>
+</noscript>
+
+
+---
+
+<body>
+
+Contains all visible content. Attributes: onload (JS), class, id, role.
+
+<!-- <body> is rendered. Keep only page content here -->
+<body class="site-body" id="home">
+  <!-- visible content goes here -->
+</body>
+
+
+---
+
+Headings: <h1> … <h6>
+
+Hierarchical document headings; use one <h1> per page for main title. Attributes: global only (id, class).
+
+<!-- Heading levels; use them to convey document structure -->
+<h1 id="page-title">Main Title</h1> <!-- primary, for SEO & screen readers -->
+<h2>Section title</h2>
+<h3>Subsection</h3>
+
+
+---
+
+<p>
+
+Paragraph block. Use for text. align attribute exists but is deprecated (use CSS). Other attributes: dir, lang, class, id.
+
+<!-- Paragraph example. Use CSS for alignment nowadays -->
+<p class="intro">This paragraph introduces the topic.</p>
+
+<!-- Deprecated align attribute (works but avoid in production) -->
+<p align="center">Centered with deprecated align attribute (prefer CSS).</p>
+
+
+---
+
+<br>
+
+Line break (use rarely; prefer CSS for spacing).
+
+<!-- Line break inserts a new line -->
+<p>Line one<br><!-- line break -->Line two</p>
+
+
+---
+
+<hr>
+
+Thematic break (horizontal rule). Represents a change in topic/section.
+
+<!-- Thematic break; use for paragraph-level separation -->
+<p>End of section</p>
+<hr>
+<p>New topic begins here</p>
+
+
+---
+
+✅ Combined Section-1 example (all basics in one skeleton)
+
+This full skeleton demonstrates the tags above in context and includes comments that explain attribute behavior.
+
+<!DOCTYPE html> <!-- HTML5 doctype -->
+<html lang="en"> <!-- lang helps accessibility & SEO -->
+<head>
+  <meta charset="utf-8"> <!-- must be early for correct encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- responsive -->
+  <title>Basics Example</title>
+  <!-- external CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- preload script to hint browser -->
+  <link rel="preload" href="main.js" as="script">
+  <!-- inline CSS (small, fallback) -->
+  <style> .note { color: #333; } </style>
+  <!-- defer script loads after parsing, keeps order among defers -->
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 id="title">Course: Frontend Basics</h1> <!-- main title -->
+  </header>
+
+  <main>
+    <p class="lead">This is the introduction paragraph for the page.</p>
+    <p>First line<br>Second line <!-- demonstration of <br> --> </p>
+    <hr><!-- indicates thematic separation -->
+  </main>
+
+  <footer>
+    <p>&copy; 2025</p>
+  </footer>
+</body>
+</html>
+
+
+---
+
+📘 Section 2 — Semantic Structure (tags + per-tag code/comments)
+
+<header>
+
+Top area of a page/section (logo, nav, page intro). No special attrs beyond global ones; can carry role="banner" for ARIA.
+
+<!-- Header for page intro and nav -->
+<header role="banner" class="site-header">
+  <img src="logo.png" alt="Site logo" width="120"> <!-- logo inside header -->
+  <h1>Site Name</h1>
+</header>
+
+
+---
+
+<nav>
+
+Container for navigation links. Add aria-label when there are multiple nav blocks.
+
+<!-- Main navigation with ARIA label -->
+<nav aria-label="Primary navigation">
+  <a href="/index.html">Home</a> |
+  <a href="/about.html">About</a> |
+  <a href="/contact.html">Contact</a>
+</nav>
+
+
+---
+
+<main>
+
+Holds the primary page content (only one main per page). Use role="main" if necessary for older assistive tech.
+
+<!-- Main content should be unique to the document -->
+<main id="main-content" role="main">
+  <h2>Welcome</h2>
+  <p>Main content appears here.</p>
+</main>
+
+
+---
+
+<section>
+
+Thematic grouping with a heading. Use aria-labelledby or headings for accessibility.
+
+<!-- Thematic section with heading -->
+<section id="features" aria-labelledby="features-heading">
+  <h2 id="features-heading">Features</h2>
+  <p>Each feature is described below.</p>
+</section>
+
+
+---
+
+<article>
+
+Self-contained content (blog post, news item). Can be syndicated.
+
+<!-- Article that could stand alone -->
+<article id="post-123">
+  <h3>How to learn HTML</h3>
+  <p>Published: <time datetime="2025-09-11">Sep 11, 2025</time></p>
+  <p>Article body...</p>
+</article>
+
+
+---
+
+<aside>
+
+Tangential content (sidebars, pull quotes). Use aria-label if needed.
+
+<!-- Sidebar content related to main article -->
+<aside aria-label="Related resources">
+  <h4>Related</h4>
+  <ul>
+    <li><a href="#">Reference 1</a></li>
+  </ul>
+</aside>
+
+
+---
+
+<footer>
+
+Footer for a page or section (copyright, author info).
+
+<!-- Footer content -->
+<footer>
+  <p>&copy; 2025 MySite</p>
+  <nav aria-label="Footer links">
+    <a href="/privacy">Privacy</a>
+  </nav>
+</footer>
+
+
+---
+
+<address>
+
+Contact info for nearest ancestor (person/company). Use semantic contact info.
+
+<!-- Contact information -->
+<address>
+  Contact: <a href="mailto:admin@example.com">admin@example.com</a><br>
+  123 Example St, City
+</address>
+
+
+---
+
+✅ Combined Section-2 example (semantic layout)
+
+Single-page example showing header, nav, main, section, article, aside, footer — comments explain attribute choices.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Semantic Layout</title>
+</head>
+<body>
+
+  <!-- Page header with banner role for accessibility -->
+  <header role="banner">
+    <h1>My Website</h1>
+    <!-- Primary navigation -->
+    <nav aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main content area -->
+  <main>
+    <!-- Section grouping related content -->
+    <section id="home" aria-labelledby="home-title">
+      <h2 id="home-title">Welcome</h2>
+      <p>Introductory content...</p>
+    </section>
+
+    <!-- Article: independent content -->
+    <article>
+      <h2>Blog Post Title</h2>
+      <p>By <span class="author">Author</span> on
+         <time datetime="2025-09-11">Sep 11, 2025</time></p>
+      <p>Article content...</p>
+    </article>
+
+    <!-- Aside: tangential content -->
+    <aside aria-label="Sidebar">
+      <h3>Resources</h3>
+      <ul><li><a href="#">Cheatsheet</a></li></ul>
+    </aside>
+  </main>
+
+  <!-- Page footer -->
+  <footer>
+    <p>&copy; 2025 Company</p>
+  </footer>
+
+</body>
+</html>
+
+
+---
+
+📘 Section 3 — Text Formatting & Inline Tags (tags + per-tag code/comments)
+
+> These are inline/phrase tags — use them inside block elements like <p>, <li>, <td>.
+
+
+
+<b>
+
+Stylistic bold; conveys no extra meaning. Use for purely visual bolding.
+
+<!-- <b> is for stylistic bold only -->
+<p>This is a <b>bold</b> word (stylistic).</p>
+
+
+---
+
+<strong>
+
+Semantic importance; screen readers emphasize it.
+
+<!-- <strong> signals important content (semantic) -->
+<p>Please <strong>do not</strong> share your password.</p>
+
+
+---
+
+<i>
+
+Stylistic italic (e.g., for alternate voice). Prefer <em> for emphasis semantics.
+
+<!-- <i> used for a foreign phrase or technical term -->
+<p>He said <i>carpe diem</i> in the speech.</p>
+
+
+---
+
+<em>
+
+Semantic emphasis — screen readers give stress.
+
+<!-- <em> used when the emphasis matters to meaning -->
+<p>You <em>must</em> submit the form.</p>
+
+
+---
+
+<u>
+
+Underlines text (presentational). In HTML5 it is valid for non-link underlines (e.g., proper names).
+
+<!-- <u> for non-link underlined text (stylistic) -->
+<p>This is an <u>underlined</u> term.</p>
+
+
+---
+
+<mark>
+
+Highlights text (like search result). Default styling is yellow highlight.
+
+<!-- <mark> used to highlight important text -->
+<p>Search result: <mark>keyword</mark> appears here.</p>
+
+
+---
+
+<small>
+
+Smaller print (fine print, legal text).
+
+<!-- <small> reduces font size for disclaimers -->
+<p>Price: $10 <small>(GST included)</small></p>
+
+
+---
+
+<del>
+
+Deleted content (rendered struck-through). Use when showing removed text.
+
+<!-- <del> used to show removed/old text -->
+<p><del>$50</del> $30</p>
+
+
+---
+
+<ins>
+
+Inserted content (often underlined). Use for additions.
+
+<!-- <ins> used to show newly inserted text -->
+<p>Policy update: <ins>Now includes 2-year warranty</ins></p>
+
+
+---
+
+<sup> / <sub>
+
+Superscript / subscript for exponents, chemical formulas.
+
+<p>2<sup>3</sup> = 8</p>
+<p>H<sub>2</sub>O</p>
+
+
+---
+
+<abbr>
+
+Abbreviation; title attribute gives expansion.
+
+<!-- title shows full form on hover -->
+<p><abbr title="HyperText Markup Language">HTML</abbr> is the markup language for the web.</p>
+
+
+---
+
+<code>
+
+Inline code sample (monospace). Use escape entities for angle brackets when showing tags (e.g., &lt;div&gt;).
+
+<!-- <code> for inline code or small snippets -->
+<p>To create a division use <code>&lt;div&gt;</code> tag.</p>
+
+
+---
+
+<pre>
+
+Preformatted block — preserves whitespace and line breaks. Often paired with <code> for code blocks.
+
+<!-- Preformatted code block -->
+<pre><code>function hello() {
+  console.log("Hi");
+}</code></pre>
+
+
+---
+
+<kbd>
+
+Keyboard input — shows keys.
+
+<p>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save.</p>
+
+
+---
+
+<samp>
+
+Sample program output.
+
+<p>Output: <samp>File saved successfully</samp></p>
+
+
+---
+
+<var>
+
+Represents a variable name.
+
+<p>Area = <var>width</var> × <var>height</var></p>
+
+
+---
+
+<q>
+
+Short inline quote — browsers may add quotation marks. cite attribute can reference source.
+
+<p>He said <q cite="https://example.com/speech">be kind</q>.</p>
+
+
+---
+
+<blockquote>
+
+Long quotation (usually block-level). Use cite for source URL.
+
+<blockquote cite="https://example.com/article">
+  <p>This is a long quote from an article.</p>
+</blockquote>
+
+
+---
+
+<cite>
+
+Title of a creative work (book, article, song). Not for person names.
+
+<p><cite>The Odyssey</cite> is a classic.</p>
+
+
+---
+
+<dfn>
+
+Marks the defining instance of a term.
+
+<p><dfn>Promise</dfn> — an object representing eventual completion (in JS).</p>
+
+
+---
+
+<time>
+
+Represents a date/time. Use datetime for machine-readable value.
+
+<p>Event: <time datetime="2025-09-15T18:00">September 15, 6:00pm</time></p>
+
+
+---
+
+ruby, rt, rp
+
+Ruby annotations for East-Asian text (phonetic guides).
+
+<ruby>
+  漢 <rp>(</rp><rt>kan</rt><rp>)</rp>
+</ruby>
+
+
+---
+
+<bdi> / <bdo>
+
+<bdi> isolates directionality of text; <bdo dir="rtl"> forces direction override.
+
+<!-- bdi isolates user input direction -->
+<p>Username: <bdi>abc123</bdi></p>
+
+<!-- bdo forces direction -->
+<p><bdo dir="rtl">hello</bdo> <!-- rendered RTL --> </p>
+
+
+---
+
+<wbr>
+
+Word break opportunity — suggests where long words may wrap.
+
+<p>Supercalifragilistic<wbr>expialidocious</p>
+
+
+---
+
+✅ Combined Section-3 example (many inline tags together)
+
+This snippet shows many of the inline tags in one place with comments explaining use.
+
+<p>
+  <strong>Important:</strong> Use <em>semantic</em> tags where possible.
+  This is <b>bold</b> and <i>italic</i>. Here's an <u>underlined</u> word.
+  Example code: <code>console.log("Hello")</code>
+</p>
+
+<pre><code>// Preformatted block
+function add(a, b) {
+  return a + b;
+}
+</code></pre>
+
+<p>Abbreviation: <abbr title="Cascading Style Sheets">CSS</abbr></p>
+<p>Keyboard: <kbd>Ctrl</kbd>+<kbd>C</kbd> — Output: <samp>Copied!</samp></p>
+<p>Formula: E = mc<sup>2</sup> and H<sub>2</sub>O</p>
+
+<blockquote cite="https://example.com">
+  <p>This is a block quote from a source.</p>
+</blockquote>
+
+
+---
+
+📘 Section 4 — Links & Media (tags + per-tag code/comments)
+
+<a> (anchor)
+
+Creates hyperlinks. Important attributes: href, target, rel, download, hreflang, type, ping, referrerpolicy.
+
+<!-- Basic link -->
+<a href="https://example.com">Visit example.com</a>
+
+<!-- Open in new tab and secure it with rel -->
+<a href="https://example.com" target="_blank" rel="noopener noreferrer" title="Example site">
+  Open in new tab (noopener prevents window.opener attack)
+</a>
+
+<!-- Download attribute suggests file download and can specify filename -->
+<a href="/files/report.pdf" download="report-2025.pdf">Download Report</a>
+
+
+---
+
+<img>
+
+Embeds images. Important attributes: src, alt (required for meaningful images), width, height, srcset, sizes, loading, decoding, crossorigin, usemap, ismap, referrerpolicy.
+
+<!-- Basic image with alt text for accessibility -->
+<img src="logo.png" alt="Company Logo" width="200" height="80">
+
+<!-- Responsive image candidates -->
+<img src="image-800.jpg"
+     srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"
+     sizes="(max-width:600px) 400px, 800px"
+     alt="A scenic view"
+     loading="lazy"> <!-- lazy defers offscreen loading -->
+
+
+---
+
+<picture> & <source>
+
+Art-direction and format selection (e.g., WebP fallback). The <img> inside <picture> is the fallback.
+
+<picture>
+  <!-- preferred modern WebP for browsers that support it -->
+  <source type="image/webp" srcset="photo.webp">
+  <!-- different image for narrow screens -->
+  <source media="(max-width:600px)" srcset="photo-small.jpg">
+  <!-- fallback -->
+  <img src="photo.jpg" alt="Photo description" width="800">
+</picture>
+
+
+---
+
+<figure> & <figcaption>
+
+Group media (image, video, diagram) with a caption.
+
+<figure>
+  <img src="chart.png" alt="Sales chart">
+  <figcaption>Figure 1 — Monthly sales chart</figcaption>
+</figure>
+
+
+---
+
+<map> & <area> (image maps)
+
+Define clickable regions on an image. <img usemap="#mapname"> references the <map> by name.
+
+<img src="plan.png" alt="Site plan" usemap="#site-map">
+
+<map name="site-map">
+  <!-- rect: x1,y1,x2,y2 -->
+  <area shape="rect" coords="34,44,270,350" href="zone1.html" alt="Zone 1">
+  <!-- circle: x-center,y-center,radius -->
+  <area shape="circle" coords="337,300,44" href="zone2.html" alt="Zone 2">
+</map>
+
+
+---
+
+<audio>
+
+Audio player. Attributes: src (or use <source>), controls, autoplay, loop, muted, preload.
+
+<!-- Audio with multiple source formats for compatibility -->
+<audio controls preload="metadata">
+  <source src="audio.mp3" type="audio/mpeg">
+  <source src="audio.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Autoplay requires muted in many browsers -->
+<audio src="ambient.mp3" autoplay loop muted></audio>
+
+
+---
+
+<video> & <source> & <track>
+
+Video tag with sources and captions. Attributes: controls, autoplay, loop, muted, poster, width, height, playsinline.
+
+<video width="640" height="360" controls poster="poster.jpg">
+  <!-- multiple formats for cross-browser support -->
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.webm" type="video/webm">
+  <!-- captions / subtitles -->
+  <track kind="subtitles" src="subs_en.vtt" srclang="en" label="English" default>
+  <!-- fallback text -->
+  Your browser does not support the video tag.
+</video>
+
+
+---
+
+<iframe>
+
+Embeds another HTML page. Important attributes: src, srcdoc, name, sandbox, allow, width, height, loading, referrerpolicy, allowfullscreen.
+
+<!-- Basic iframe embedding a YouTube video -->
+<iframe width="560" height="315"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+</iframe>
+
+<!-- iframe with sandbox to restrict capabilities -->
+<iframe src="widget.html" sandbox="allow-scripts allow-forms" loading="lazy"></iframe>
+
+
+---
+
+<embed> & <object> & <param>
+
+General embedding (PDFs, plugins). <object> can include <param> children.
+
+<!-- Embed PDF -->
+<embed src="doc.pdf" type="application/pdf" width="600" height="400">
+
+<!-- Object tag with param -->
+<object data="interactive.swf" type="application/x-shockwave-flash" width="400" height="300">
+  <param name="autoplay" value="true">
+  Fallback content if object is unsupported.
+</object>
+
+
+---
+
+✅ Combined Section-4 example (links & media)
+
+This example demonstrates <a>, <img>, <picture>, <audio>, <video>, <iframe>, and an image map — comments explain attributes.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Links & Media Demo</title>
+</head>
+<body>
+
+  <!-- Links -->
+  <a href="https://example.com" target="_blank" rel="noopener noreferrer" title="Example">Visit Example</a>
+  <a href="/files/resume.pdf" download="resume.pdf">Download Resume</a>
+
+  <!-- Picture with responsive sources -->
+  <picture>
+    <source media="(min-width:800px)" srcset="hero-large.webp" type="image/webp">
+    <img src="hero.jpg" alt="Hero image" width="800">
+  </picture>
+
+  <!-- Image with srcset -->
+  <img src="thumb.jpg" alt="Thumbnail"
+       srcset="thumb-400.jpg 400w, thumb-800.jpg 800w"
+       sizes="(max-width:600px) 400px, 800px"
+       loading="lazy">
+
+  <!-- Audio -->
+  <audio controls>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser doesn't support audio.
+  </audio>
+
+  <!-- Video with subtitles -->
+  <video width="480" controls poster="poster.jpg">
+    <source src="clip.mp4" type="video/mp4">
+    <track kind="subtitles" src="en.vtt" srclang="en" label="English">
+  </video>
+
+  <!-- Iframe (YouTube embed) -->
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID" width="560" height="315"
+          title="Video" frameborder="0" allowfullscreen></iframe>
+
+  <!-- Image map -->
+  <img src="map.png" alt="Clickable map" usemap="#map1">
+  <map name="map1">
+    <area shape="rect" coords="0,0,100,100" href="region1.html" alt="Region 1">
+  </map>
+
+</body>
+</html>
+
+
+---
+
+That completes Sections 1–4 in the exact format you requested: each tag explained outside the code, and a dedicated example for each tag with inline comments inside the code showing how attributes work for that condition — plus a combined section example at the end of each section.
+
+Do you want me to continue with Sections 5–8 (the next chunk) in the same format now?
+
