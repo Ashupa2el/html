@@ -887,7 +887,710 @@ This example demonstrates <a>, <img>, <picture>, <audio>, <video>, <iframe>, and
 
 ---
 
-That completes Sections 1–4 in the exact format you requested: each tag explained outside the code, and a dedicated example for each tag with inline comments inside the code showing how attributes work for that condition — plus a combined section example at the end of each section.
+📘 Section 5 — Lists
 
-Do you want me to continue with Sections 5–8 (the next chunk) in the same format now?
+<ul> — Unordered list
 
+Creates a bulleted list. Use CSS to style bullets; only global attributes are common.
+
+<!-- Unordered list; no special attributes required here -->
+<ul>
+  <!-- <li> is each list item -->
+  <li>Milk <!-- simple list item --></li>
+  <li>Bread</li>
+  <li>Cheese</li>
+</ul>
+
+
+---
+
+<ol> — Ordered list
+
+Creates a numbered (or lettered/roman) list. Useful attributes: type, start, reversed.
+
+<!-- Ordered list with attributes:
+     type="A" -> use uppercase letters (A, B, C)
+     start="5" -> start numbering at 5 (or letter that corresponds)
+     reversed -> count downwards
+-->
+<ol type="A" start="5" reversed>
+  <li>Step One <!-- displayed as E (since start=5 -> E) --></li>
+  <li>Step Two <!-- displayed as D --></li>
+  <li>Step Three <!-- displayed as C --></li>
+</ol>
+
+
+---
+
+<li> — List item
+
+An item inside <ul> or <ol>. Can contain almost any flow content (text, links, nested lists). Use value on <li> only inside <ol> to override numbering for that item.
+
+<!-- Individual list item examples -->
+<ul>
+  <li id="first-item">First item <!-- id used for linking or CSS --></li>
+  <li class="highlight">Second item <!-- class for styling --></li>
+  <li>
+    Nested list example:
+    <!-- nested lists are allowed -->
+    <ul>
+      <li>Nested A</li>
+      <li>Nested B</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- Using value on an <li> inside an <ol> -->
+<ol>
+  <li value="10">This item shows number 10 (overrides auto numbering)</li>
+  <li>Auto next (11)</li>
+</ol>
+
+
+---
+
+<dl>, <dt>, <dd> — Description (definition) list
+
+Use <dl> to pair terms (<dt>) with definitions (<dd>). Semantically for glossaries, FAQs, etc.
+
+<!-- Description list: <dt> is the term, <dd> is the description -->
+<dl>
+  <dt>HTML</dt>
+  <dd>HyperText Markup Language — markup for web pages.</dd>
+
+  <dt>API</dt>
+  <dd>Application Programming Interface — a set of functions/endpoints.</dd>
+</dl>
+
+
+---
+
+✅ Combined Example — Lists (all together)
+
+<!-- Combined lists example with comments -->
+<section>
+  <h3>Groceries</h3>
+  <ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+  </ul>
+
+  <h3>Priority Steps</h3>
+  <ol start="1">
+    <li>Wake up</li>
+    <li>Study</li>
+  </ol>
+
+  <h3>Glossary</h3>
+  <dl>
+    <dt>DOM</dt>
+    <dd>Document Object Model — programmatic structure of a webpage.</dd>
+  </dl>
+</section>
+
+
+---
+
+📘 Section 6 — Tables
+
+<table> — Table container
+
+Wrapper for tabular data. Prefer CSS for styling (avoid deprecated attributes like border in production).
+
+<!-- Basic table structure -->
+<table>
+  <!-- rows and cells go here -->
+</table>
+
+
+---
+
+<caption> — Table caption/title
+
+Provides an accessible title for the table (useful for screen readers).
+
+<table>
+  <caption>Student Marks — Semester 1</caption> <!-- Human-readable title for table -->
+  <tr><th>Name</th><th>Marks</th></tr>
+  <tr><td>Alice</td><td>95</td></tr>
+</table>
+
+
+---
+
+<thead>, <tbody>, <tfoot> — Row groups
+
+Wrap header, body, and footer rows for semantic grouping and easier styling.
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Name</th> <!-- scope="col" indicates header applies to the column -->
+      <th scope="col">Subject</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>Math</td>
+      <td>95</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">End of results</td> <!-- colspan merges columns -->
+    </tr>
+  </tfoot>
+</table>
+
+
+---
+
+<tr> — Table row
+
+Contains cells (<th>/<td>).
+
+<tr>
+  <td>Row item 1</td>
+  <td>Row item 2</td>
+</tr>
+
+
+---
+
+<th> — Header cell
+
+Header cell (default bold/centered). Important attributes: scope (e.g., col, row) and abbr (abbreviation).
+
+<!-- Column header with scope for accessibility and abbr if header is long -->
+<tr>
+  <th scope="col" abbr="Student Name">Name</th>
+  <th scope="col">Marks</th>
+</tr>
+
+
+---
+
+<td> — Data cell
+
+Standard cell for table data. Attributes: colspan, rowspan, headers (IDs of header cells it relates to).
+
+<!-- Cell spanning columns and rows -->
+<tr>
+  <td colspan="2">Merged across 2 columns</td> <!-- colspan example -->
+  <td>Regular cell</td>
+</tr>
+
+<tr>
+  <td rowspan="2">Spans two rows</td> <!-- rowspan example -->
+  <td>Row 2, Col 2</td>
+  <td>Row 2, Col 3</td>
+</tr>
+<tr>
+  <td>Row 3, Col 2</td>
+  <td>Row 3, Col 3</td>
+</tr>
+
+
+---
+
+<colgroup> & <col> — Column grouping & styling
+
+Apply styles/attributes to whole columns.
+
+<table>
+  <!-- style first column differently -->
+  <colgroup>
+    <col style="background: #f2f2f2"> <!-- applies to first column -->
+    <col span="2"> <!-- next two columns share default style -->
+  </colgroup>
+
+  <thead>
+    <tr><th>Name</th><th>Math</th><th>Science</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Bob</td><td>80</td><td>85</td></tr>
+  </tbody>
+</table>
+
+
+---
+
+Accessibility: headers and scope
+
+Use scope on <th> and headers on <td> to associate cells for screen readers (helpful for complex tables).
+
+<!-- Example using headers attribute:
+     header cell IDs are referenced by td.headers for complex associations -->
+<table>
+  <tr>
+    <th id="h-name" scope="col">Name</th>
+    <th id="h-score" scope="col">Score</th>
+  </tr>
+  <tr>
+    <td headers="h-name">Charlie</td> <!-- connects to header h-name -->
+    <td headers="h-score">88</td>
+  </tr>
+</table>
+
+
+---
+
+✅ Combined Example — Tables (complete)
+
+<table>
+  <caption>Exam Results</caption>
+  <colgroup>
+    <col style="width:40%">
+    <col span="2" style="width:30%">
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th scope="col">Student</th>
+      <th scope="col">Math</th>
+      <th scope="col">Science</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>95</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <!-- combine two columns to show 'Absent' -->
+      <td>Bob</td>
+      <td colspan="2" align="center">Absent</td>
+    </tr>
+    <tr>
+      <!-- row-spanning example -->
+      <td rowspan="2">Charlie</td>
+      <td>76</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>92</td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td>Total Students</td>
+      <td colspan="2">3</td>
+    </tr>
+  </tfoot>
+</table>
+
+
+---
+
+📘 Section 7 — Forms (detailed): Basics & common input types
+
+> This section is more detailed because forms are critical. Each tag below has a short outside explanation and an in-code example with comments explaining each attribute's role in that scenario.
+
+
+
+<form> — Form container
+
+Wraps form controls; key attributes: action, method, enctype, autocomplete, target, novalidate.
+
+<!-- Form posting to /submit with file upload encoding type -->
+<form action="/submit" method="post" enctype="multipart/form-data" autocomplete="on" target="_self">
+  <!-- action="/submit" -> server endpoint that receives form data -->
+  <!-- method="post" -> secure POST request (not in URL) -->
+  <!-- enctype="multipart/form-data" -> required for file uploads -->
+  <!-- autocomplete="on" -> browser may autofill fields -->
+  <!-- target="_self" -> response opens in same tab -->
+</form>
+
+
+---
+
+<label> — Label for inputs
+
+Associates text with a control using for matching input's id, improving accessibility and click focus.
+
+<!-- Label using for attribute to bind to input by id -->
+<label for="email">Email:</label>
+<input id="email" name="email" type="email" placeholder="you@example.com">
+<!-- Clicking the label focuses the associated input -->
+
+
+---
+
+<input type="text"> — Single-line text
+
+Common attributes: name, id, value, placeholder, required, maxlength, minlength, pattern, autocomplete, autofocus, readonly, disabled, inputmode.
+
+<!-- Text input with validation constraints and autofocus -->
+<label for="username">Username</label>
+<input id="username" name="username" type="text" placeholder="Enter username"
+       required minlength="3" maxlength="20" autocomplete="username" autofocus>
+<!-- required -> cannot submit empty
+     minlength / maxlength -> client-side limits
+     autocomplete -> helps browsers prefill
+     autofocus -> focuses this field on page load -->
+
+
+---
+
+<input type="password"> — Password field
+
+<label for="pwd">Password</label>
+<input id="pwd" name="password" type="password" placeholder="Enter password" required minlength="6">
+<!-- type="password" masks input
+     minlength encourages stronger passwords -->
+
+
+---
+
+<input type="email">, type="url", type="tel" — semantic input types
+
+Browser performs format validation and may show specialized keyboard on mobiles.
+
+<label for="user-email">Email</label>
+<input id="user-email" name="email" type="email" placeholder="name@example.com" required>
+<!-- type="email" enforces email format -->
+
+<label for="website">Website</label>
+<input id="website" name="website" type="url" placeholder="https://example.com">
+
+<label for="phone">Phone</label>
+<input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+91-XXXXXXXXXX">
+<!-- inputmode="tel" hints mobile keyboards to show numeric keypad -->
+
+
+---
+
+<input type="number"> / type="range" — numeric inputs
+
+Use min, max, step for constraints.
+
+<label for="age">Age</label>
+<input id="age" name="age" type="number" min="1" max="120" value="18">
+<!-- min/max enforce range; value provides default -->
+
+<label for="volume">Volume</label>
+<input id="volume" name="volume" type="range" min="0" max="100" step="5" value="50">
+<!-- range provides slider UI; step defines increments -->
+
+
+---
+
+<input type="date">, time, datetime-local, month, week
+
+Browser-native pickers (support varies). Use min/max for ranges.
+
+<label for="dob">Date of Birth</label>
+<input id="dob" name="dob" type="date" min="1900-01-01" max="2025-12-31">
+
+
+---
+
+<input type="file"> — file upload
+
+Attributes: accept (MIME types or extensions), multiple.
+
+<label for="resume">Upload resume (PDF)</label>
+<input id="resume" name="resume" type="file" accept=".pdf,application/pdf" required>
+<!-- accept restricts selectable files; required forces upload -->
+
+<label for="photos">Upload photos (multiple)</label>
+<input id="photos" name="photos" type="file" accept="image/*" multiple>
+<!-- multiple allows selecting multiple files -->
+
+
+---
+
+<input type="checkbox"> & <input type="radio"> — choices
+
+Checkboxes allow multiple selections; radios with same name are mutually exclusive.
+
+<!-- Checkbox example -->
+<label><input type="checkbox" name="subscribe" value="newsletter" checked> Subscribe to newsletter</label>
+<!-- checked -> default ticked -->
+
+<!-- Radio group example -->
+<p>Gender:</p>
+<label><input type="radio" name="gender" value="male" checked> Male</label>
+<label><input type="radio" name="gender" value="female"> Female</label>
+<!-- radios with same name -> only one selected -->
+
+
+---
+
+<textarea> — multi-line text input
+
+Attributes: rows, cols, maxlength, placeholder, wrap, readonly, required.
+
+<label for="bio">Short Bio</label>
+<textarea id="bio" name="bio" rows="4" cols="40" maxlength="300" placeholder="Tell us about yourself"></textarea>
+<!-- rows/cols control visible size; maxlength limits characters -->
+
+
+---
+
+<select>, <option>, <optgroup> — dropdowns
+
+<select> attributes: name, multiple, size. <option>: value, selected, disabled. <optgroup>: label.
+
+<label for="country">Country</label>
+<select id="country" name="country" required>
+  <option value="">Select</option>
+  <optgroup label="Asia">
+    <option value="in" selected>India</option> <!-- selected -> default -->
+    <option value="jp">Japan</option>
+  </optgroup>
+  <optgroup label="Europe">
+    <option value="de">Germany</option>
+  </optgroup>
+</select>
+
+<!-- Multiple select -->
+<label for="skills">Skills</label>
+<select id="skills" name="skills" multiple size="4">
+  <option value="html">HTML</option>
+  <option value="css">CSS</option>
+  <option value="js">JavaScript</option>
+</select>
+<!-- multiple + size allow choosing multiple items -->
+
+
+---
+
+<button> — buttons
+
+type: submit, reset, button. Can have name and value for submission.
+
+<button type="submit">Submit</button> <!-- submits form -->
+<button type="reset">Reset</button>   <!-- resets fields -->
+<button type="button" onclick="alert('clicked')">Click me</button> <!-- JS-only button -->
+
+
+---
+
+Validation: pattern, required, minlength, maxlength
+
+Browser enforces client-side checks before submit. Use title to show hint for pattern.
+
+<label for="zipcode">Zip code</label>
+<input id="zipcode" name="zipcode" pattern="\d{5}" title="5 digit zip" required>
+<!-- pattern enforces 5 digits, title explains requirement to user -->
+
+
+---
+
+Hidden & form-association attributes: form, name, formaction
+
+Inputs can target a different form using form attribute; formaction overrides form action on buttons.
+
+<!-- Hidden input included in submission -->
+<input type="hidden" name="session" value="abc123">
+
+<!-- Button overrides form action -->
+<form id="f1" action="/save" method="post">
+  <!-- ... -->
+  <button type="submit" formaction="/save-and-email">Save & Email</button>
+</form>
+
+
+---
+
+✅ Combined Section-7 example (full form with comments)
+
+<!-- Registration form example demonstrating many attributes -->
+<form action="/register" method="post" enctype="multipart/form-data" autocomplete="on">
+  <!-- Personal details -->
+  <fieldset>
+    <legend>Personal Details</legend>
+
+    <!-- Text input with validation -->
+    <label for="username">Username:</label>
+    <input id="username" name="username" type="text" required minlength="3" maxlength="20" placeholder="Your username">
+    <!-- required ensures the field is filled before submit -->
+
+    <!-- Email with semantic type -->
+    <label for="email">Email:</label>
+    <input id="email" name="email" type="email" placeholder="name@example.com" required>
+
+    <!-- Password -->
+    <label for="pwd">Password:</label>
+    <input id="pwd" name="password" type="password" minlength="8" required>
+  </fieldset>
+
+  <!-- Preferences -->
+  <fieldset>
+    <legend>Preferences</legend>
+    <!-- Checkbox -->
+    <label><input type="checkbox" name="newsletter" value="yes" checked> Subscribe</label>
+
+    <!-- Radio -->
+    <p>Preferred contact:</p>
+    <label><input type="radio" name="contact" value="email" checked> Email</label>
+    <label><input type="radio" name="contact" value="phone"> Phone</label>
+
+    <!-- Select with optgroup -->
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+      <option value="">Choose</option>
+      <optgroup label="Asia">
+        <option value="in">India</option>
+        <option value="jp">Japan</option>
+      </optgroup>
+    </select>
+  </fieldset>
+
+  <!-- Upload and message -->
+  <fieldset>
+    <legend>Extras</legend>
+
+    <!-- File input -->
+    <label for="resume">Resume (PDF)</label>
+    <input id="resume" name="resume" type="file" accept=".pdf,application/pdf">
+
+    <!-- Textarea -->
+    <label for="bio">Bio</label>
+    <textarea id="bio" name="bio" rows="4" cols="50" maxlength="500" placeholder="Short bio"></textarea>
+  </fieldset>
+
+  <!-- Buttons -->
+  <button type="submit">Register</button>
+  <button type="reset">Reset</button>
+</form>
+
+
+---
+
+📘 Section 8 — Forms (advanced controls & UI helpers)
+
+<fieldset> & <legend> (grouping)
+
+Group related controls and provide a legend caption.
+
+<fieldset>
+  <legend>Billing Address</legend>
+  <label for="addr">Address:</label>
+  <input id="addr" name="address" type="text">
+</fieldset>
+
+
+---
+
+<datalist> — suggestions for <input>
+
+Provides autocomplete suggestions for an <input list="id">.
+
+<label for="browser">Browser</label>
+<input id="browser" name="browser" list="browsers" placeholder="Choose or type">
+
+<datalist id="browsers">
+  <option value="Chrome">
+  <option value="Firefox">
+  <option value="Edge">
+</datalist>
+<!-- User can type custom value or select from list -->
+
+
+---
+
+<output> — shows calculation results
+
+Used with forms and JS to show computed values. The for attribute can reference inputs.
+
+<!-- Simple oninput calculation showing output element -->
+<form oninput="sum.value = (parseInt(a.value)||0) + (parseInt(b.value)||0)">
+  <input id="a" name="a" type="number" value="10"> +
+  <input id="b" name="b" type="number" value="20"> =
+  <output name="sum">30</output> <!-- value updated by oninput JS expression -->
+</form>
+
+
+---
+
+<progress> — progress bar
+
+Represents progress toward a task. value and max define progress.
+
+<!-- Progress at 60% (value/max) -->
+<progress value="60" max="100">60%</progress>
+
+
+---
+
+<meter> — scalar gauge
+
+Shows a scalar value within a known range; attributes: min, max, low, high, optimum.
+
+<!-- Example: battery level, 0.7 out of 1 -->
+<meter value="0.7" min="0" max="1" low="0.2" high="0.9" optimum="1">70%</meter>
+
+
+---
+
+Accessibility helpers and input hints
+
+aria-* attributes (e.g., aria-label, aria-describedby) to help assistive tech.
+
+inputmode and autocomplete to improve mobile input experience.
+
+
+<!-- Input with aria and inputmode hints for better accessibility & keyboard -->
+<label for="mobile">Mobile</label>
+<input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" aria-label="Mobile phone number" placeholder="+91-">
+
+
+---
+
+<summary> / <details> as form-like UI (disclosure)
+
+Useful for grouping optional settings.
+
+<details>
+  <summary>Advanced settings</summary>
+  <label><input type="checkbox" name="opt1"> Option 1</label>
+  <label><input type="checkbox" name="opt2"> Option 2</label>
+</details>
+
+
+---
+
+✅ Combined Section-8 example (advanced controls + helpers)
+
+<form>
+  <fieldset>
+    <legend>Survey</legend>
+
+    <!-- Datalist suggestion -->
+    <label for="city">City</label>
+    <input id="city" name="city" list="cities" placeholder="Start typing...">
+    <datalist id="cities">
+      <option value="Mumbai">
+      <option value="Delhi">
+      <option value="Bengaluru">
+    </datalist>
+
+    <!-- Output example -->
+    <label>Numbers</label>
+    <input id="n1" type="number" value="5">
+    <input id="n2" type="number" value="10">
+    <output name="total">15</output>
+
+    <!-- Progress and meter -->
+    <label>Download Progress</label>
+    <progress value="45" max="100">45%</progress>
+
+    <label>Health</label>
+    <meter value="0.6" min="0" max="1" low="0.2" high="0.8" optimum="1">60%</meter>
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>
+
+
+---
+
+That completes Sections 5–8 rewritten with per-tag explanations outside and examples with inline HTML comments inside showing how each attribute works in that scenario.
