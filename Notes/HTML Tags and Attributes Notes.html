@@ -1,0 +1,450 @@
+HTML Tags and Attributes Notes
+Document Structure Tags
+!DOCTYPE
+Purpose: Tells the browser which version of HTML is used, ensuring proper page rendering.
+Attributes: None.
+
+Code:
+
+xml
+<!DOCTYPE html>
+html
+Purpose: Root element containing the entire HTML document.
+Attributes:
+
+lang: sets document language (e.g., "en").
+
+dir: text direction (e.g., "ltr", "rtl").
+
+Code:
+
+xml
+<html lang="en" dir="ltr">
+  <!-- Content here -->
+</html>
+head
+Purpose: Container for metadata, scripts, styles.
+Attributes: None special.
+
+Code:
+
+xml
+<head>
+  <!-- Metadata here -->
+</head>
+meta
+Purpose: Provides metadata like character encoding, author, viewport.
+Attributes:
+
+charset: character encoding ("UTF-8").
+
+name: name of metadata (viewport, author).
+
+content: content value.
+
+http-equiv: HTTP headers simulation (less used).
+
+Code:
+
+xml
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Jane Smith">
+title
+Purpose: Shows tab/browser title.
+Attributes: None.
+
+Code:
+
+xml
+<title>My Web Page</title>
+link
+Purpose: Links external sources — CSS, favicon, etc.
+Attributes:
+
+rel: relationship ("stylesheet", "icon").
+
+href: resource URL.
+
+type: media type ("text/css").
+
+Code:
+
+xml
+<link rel="stylesheet" href="style.css" type="text/css">
+body
+Purpose: Contains all visible content.
+Attributes:
+
+onload: runs JavaScript on load.
+
+style, class, id: styling/selection.
+
+Code:
+
+xml
+<body style="background: #fafafa" onload="initApp()">
+  <!-- Page content -->
+</body>
+Sectioning Tags
+header
+Purpose: Defines header for page/section, navigation, title.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<header id="main-header" class="header-class">
+  <!-- Header content -->
+</header>
+nav
+Purpose: Navigation links container.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<nav class="top-nav">
+  <a href="#home">Home</a>
+</nav>
+main
+Purpose: Primary page content container.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<main id="content-main">
+  Main content here.
+</main>
+section
+Purpose: Logical grouping of content, often with header.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<section id="about-section" class="highlight">
+  <h2>About Us</h2>
+</section>
+article
+Purpose: Standalone content such as blog posts.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<article class="blog-post" id="post-2">
+  <h2>Learn HTML</h2>
+</article>
+aside
+Purpose: Side content related to main content, sidebars.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<aside id="sidebar">
+  <h4>Tip!</h4>
+</aside>
+footer
+Purpose: Bottom section for contact info, copyright.
+Attributes: id, class, style.
+
+Code:
+
+xml
+<footer class="main-footer">
+  &copy; 2025 Company
+</footer>
+Text Content Tags
+h1 to h6
+Purpose: Headings from largest (h1) to smallest (h6).
+Attributes: id, class, style, title.
+
+Code:
+
+xml
+<h1 id="first" class="heading" style="color:blue;" title="Main Heading">Title</h1>
+p
+Purpose: Paragraph text.
+Attributes: class, id, style, title.
+
+Code:
+
+xml
+<p class="lead" title="This is a paragraph">Paragraph text.</p>
+br
+Purpose: Line break.
+Attributes: None.
+
+Code:
+
+xml
+Line1<br>Line2
+hr
+Purpose: Horizontal line to separate content.
+Attributes: class, id, style, title.
+
+Code:
+
+xml
+<hr style="border: 1px solid #000;" title="Divider">
+pre
+Purpose: Preformatted text, preserves spacing.
+Attributes: class, id, style.
+
+Code:
+
+xml
+<pre style="font-family:monospace;">
+This   keeps
+ all spaces.
+</pre>
+blockquote
+Purpose: Long quotation.
+Attributes: cite (source URL), class, id, style.
+
+Code:
+
+xml
+<blockquote cite="https://example.com" style="color: gray;">
+  Quoted text
+</blockquote>
+code
+Purpose: Inline code formatting.
+Attributes: class, id, style.
+
+Code:
+
+xml
+<code style="background:#eee;">console.log('hi');</code>
+b, strong, i, em, u
+Purpose: Text formatting - bold, important, italic, emphasized, underlined.
+Attributes: class, id, style, title.
+
+Code:
+
+xml
+<b>Bold</b>
+<strong title="Important">Really important</strong>
+<i>Italic</i>
+<em>Emphasized</em>
+<u>Underlined</u>
+mark, small, sub, sup, del, ins
+Purpose: Highlight, small text, subscript, superscript, deleted, inserted.
+
+Code:
+
+xml
+<mark>Highlight</mark>
+<small>small text</small>
+H<sub>2</sub>O
+E=mc<sup>2</sup>
+<del>old</del>
+<ins>new</ins>
+Grouping Tags
+div
+Purpose: Generic block container (layout, styling).
+Attributes: id, class, style, title.
+
+Code:
+
+xml
+<div id="box" class="main-div" style="color:red;" title="Division"></div>
+span
+Purpose: Inline generic container for styling.
+Attributes: id, class, style, title.
+
+Code:
+
+xml
+<span class="highlight" style="font-weight:bold;">inline</span>
+Lists
+ul, ol, li
+Purpose: Lists - unordered, ordered, and list items.
+Attributes:
+
+ol: type, start, reversed.
+
+li: value (in ol), class, id, style, title.
+
+Code:
+
+xml
+<ul class="fruits" title="Fruit List">
+  <li>Apple</li>
+  <li>Banana</li>
+</ul>
+<ol type="I" start="3">
+  <li value="10">Tenth</li>
+</ol>
+dl, dt, dd
+Purpose: Description list, terms and definitions.
+
+Code:
+
+xml
+<dl>
+  <dt>Tag</dt>
+  <dd>Definition of tag</dd>
+</dl>
+Links and Media
+a
+Purpose: Hyperlink.
+Attributes: href, target, title, download, rel, id, class, style.
+
+Code:
+
+xml
+<a href="https://geeksforgeeks.org" target="_blank" title="Open in a new tab" download>Visit</a>
+img
+Purpose: Displays images.
+Attributes: src, alt, width, height, title, loading.
+
+Code:
+
+xml
+<img src="pic.jpg" alt="Picture" width="100" height="200" title="My Image" loading="lazy">
+audio, video, source
+Purpose: Embed audio/video files.
+Attributes:
+
+audio/video: controls, autoplay, muted, loop, width, height, poster.
+
+source: src, type.
+
+Code:
+
+xml
+<audio controls autoplay loop src="audio.mp3"></audio>
+<video width="320" height="240" controls poster="cover.jpg">
+  <source src="movie.mp4" type="video/mp4">
+</video>
+figure, figcaption
+Purpose: Groups media with captions.
+
+Code:
+
+xml
+<figure>
+  <img src="img.png" alt="desc">
+  <figcaption>This is caption</figcaption>
+</figure>
+Tables
+table, tr, th, td, caption, thead, tbody, tfoot
+Purpose: Display tabular data.
+Attributes:
+
+table: border, cellpadding, cellspacing, class, id, style.
+
+th, td: colspan, rowspan, headers.
+
+Code:
+
+xml
+<table border="1" id="sample-table" class="my-table">
+  <caption>Table Caption</caption>
+  <thead>
+    <tr><th>Name</th><th>Age</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Alice</td><td>22</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="2">Footer</td></tr>
+  </tfoot>
+</table>
+Forms
+form
+Purpose: Collects user input.
+Attributes: action, method, autocomplete, enctype, novalidate, target, name, id, class.
+
+Code:
+
+xml
+<form action="/submit" method="post" autocomplete="off" name="myform">
+  <!-- Form Fields -->
+</form>
+input
+Purpose: User input fields.
+Attributes: type, name, value, placeholder, required, checked, readonly, disabled, maxlength, min, max, step, pattern, id, class.
+
+Code:
+
+xml
+<input type="text" name="username" placeholder="Username" required maxlength="20">
+textarea
+Purpose: Multi-line text input.
+Attributes: name, rows, cols, placeholder, required, maxlength, readonly, disabled, id, class.
+
+Code:
+
+xml
+<textarea name="message" rows="4" cols="20" placeholder="Write here"></textarea>
+button
+Purpose: Clickable button.
+Attributes: type, disabled, name, value, id, class.
+
+Code:
+
+xml
+<button type="submit" disabled>Send</button>
+select, option
+Purpose: Dropdown menu.
+Attributes:
+
+select: name, multiple, required, size, disabled, id, class.
+
+option: value, selected, disabled.
+
+Code:
+
+xml
+<select name="colors" required>
+  <option value="">Choose color</option>
+  <option value="red">Red</option>
+  <option value="blue" selected>Blue</option>
+</select>
+label
+Purpose: Associates label with input.
+Attributes: for, id, class.
+
+Code:
+
+xml
+<label for="username">Username:</label>
+fieldset, legend
+Purpose: Groups related form fields; legend caption.
+Attributes: none special.
+
+Code:
+
+xml
+<fieldset>
+  <legend>Account</legend>
+  <!-- form controls -->
+</fieldset>
+Script & Style
+script
+Purpose: Embed or reference JavaScript.
+Attributes: src, type, async, defer.
+
+Code:
+
+xml
+<script src="main.js" async></script>
+<script>
+  alert('inline script');
+</script>
+style
+Purpose: Embed CSS styles.
+Attributes: type.
+
+Code:
+
+xml
+<style type="text/css">
+  body { color: #333; }
+</style>
+If the user wants, I can now provide this as a downloadable text file.
