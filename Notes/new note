@@ -1593,4 +1593,460 @@ Useful for grouping optional settings.
 
 ---
 
-That completes Sections 5–8 rewritten with per-tag explanations outside and examples with inline HTML comments inside showing how each attribute works in that scenario.
+📘 Section 9 — Multimedia
+
+<img> (image)
+
+Embeds an image. Attributes:
+
+src: image path (URL or file)
+
+alt: alternative text (important for accessibility)
+
+width / height: display dimensions (in px or %)
+
+loading: lazy/eager image loading
+
+
+<!-- Embedding an image -->
+<img src="cat.jpg" alt="A cute cat" width="200" height="150">
+
+
+---
+
+<audio>
+
+Embeds audio. Attributes:
+
+src: audio file path
+
+controls: adds play/pause UI
+
+autoplay: start automatically (not recommended)
+
+loop: play repeatedly
+
+muted: starts muted
+
+
+<!-- Audio player with controls -->
+<audio src="song.mp3" controls loop></audio>
+
+
+---
+
+<video>
+
+Embeds video. Attributes:
+
+src: video file path
+
+controls, autoplay, loop, muted (same as <audio>)
+
+poster: preview image before play
+
+width, height: video size
+
+
+<!-- Video player -->
+<video src="movie.mp4" controls width="400" poster="thumbnail.jpg"></video>
+
+
+---
+
+<source>
+
+Used inside <audio> / <video> to provide multiple file formats.
+
+<video controls>
+  <!-- Browser will use the first supported format -->
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video>
+
+
+---
+
+<track>
+
+Adds captions/subtitles for video. Attributes:
+
+kind: subtitles, captions, descriptions, chapters, metadata
+
+src: subtitle file
+
+srclang: language code (e.g., "en")
+
+label: description for UI
+
+
+<video controls>
+  <source src="lecture.mp4" type="video/mp4">
+  <track src="subtitles.vtt" kind="subtitles" srclang="en" label="English">
+</video>
+
+
+---
+
+✅ Combined Section-9 Example
+
+<!-- Multimedia example -->
+<img src="nature.jpg" alt="Scenic view" width="300">
+
+<audio controls>
+  <!-- MP3 fallback -->
+  <source src="audio.mp3" type="audio/mpeg">
+  <source src="audio.ogg" type="audio/ogg">
+  <!-- Shown if no support -->
+  Your browser does not support audio.
+</audio>
+
+<video controls width="400" poster="preview.png">
+  <source src="clip.mp4" type="video/mp4">
+  <track src="captions.vtt" kind="subtitles" srclang="en" label="English">
+</video>
+
+
+---
+
+📘 Section 10 — Semantic Elements
+
+<header>
+
+Represents intro section or navigation at the top.
+
+<header>
+  <!-- Usually contains logo, nav, etc. -->
+  <h1>Website Title</h1>
+  <nav>…</nav>
+</header>
+
+
+---
+
+<footer>
+
+Represents bottom section of page.
+
+<footer>
+  <p>&copy; 2025 My Website</p>
+</footer>
+
+
+---
+
+<nav>
+
+Defines main navigation links.
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+</nav>
+
+
+---
+
+<main>
+
+Marks central content of page. Only one <main> allowed per page.
+
+<main>
+  <h2>Article</h2>
+  <p>This is the main content area.</p>
+</main>
+
+
+---
+
+<article>
+
+Independent piece of content (blog, news, etc.).
+
+<article>
+  <h2>Blog Post</h2>
+  <p>Some blog content...</p>
+</article>
+
+
+---
+
+<section>
+
+Defines a thematic section of content.
+
+<section>
+  <h2>Features</h2>
+  <p>Our key features explained here...</p>
+</section>
+
+
+---
+
+<aside>
+
+Represents side content (sidebar, ads, related info).
+
+<aside>
+  <h3>Related Articles</h3>
+  <ul><li>Post 1</li><li>Post 2</li></ul>
+</aside>
+
+
+---
+
+<figure> & <figcaption>
+
+Used for media (images, charts) + caption.
+
+<figure>
+  <img src="chart.png" alt="Sales Chart">
+  <figcaption>Figure 1: Sales Growth</figcaption>
+</figure>
+
+
+---
+
+✅ Combined Section-10 Example
+
+<header>
+  <h1>My Blog</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <h2>Post Title</h2>
+    <p>Post content here...</p>
+  </article>
+
+  <aside>
+    <h3>Recommended</h3>
+    <ul><li>Article A</li><li>Article B</li></ul>
+  </aside>
+</main>
+
+<footer>
+  <p>&copy; 2025 Blog</p>
+</footer>
+
+
+---
+
+📘 Section 11 — Inline & Text Formatting
+
+<b> vs <strong>
+
+<b>: bold text (visual only)
+
+<strong>: bold + semantic emphasis
+
+
+<p><b>Bold text</b> vs <strong>Important text</strong></p>
+
+
+---
+
+<i> vs <em>
+
+<i>: italic (visual)
+
+<em>: italic + semantic stress
+
+
+<p><i>Italic text</i> vs <em>Emphasized text</em></p>
+
+
+---
+
+<mark>
+
+Highlights text.
+
+<p>This is <mark>important</mark>.</p>
+
+
+---
+
+<small>
+
+Reduces font size.
+
+<p>Terms <small>(conditions apply)</small></p>
+
+
+---
+
+<sub> & <sup>
+
+Subscript & superscript.
+
+<p>H<sub>2</sub>O and X<sup>2</sup></p>
+
+
+---
+
+<code>, <pre>, <kbd>, <samp>
+
+<code>: inline code
+
+<pre>: preserves whitespace/formatting
+
+<kbd>: user input
+
+<samp>: program output
+
+
+<p>Use <code>&lt;div&gt;</code> tag in HTML.</p>
+
+<pre>
+Line 1
+    Indented Line 2
+</pre>
+
+<p>Press <kbd>Ctrl + C</kbd> to copy.</p>
+<p>Output: <samp>File saved</samp></p>
+
+
+---
+
+<abbr>
+
+Abbreviation with tooltip.
+
+<p><abbr title="World Health Organization">WHO</abbr></p>
+
+
+---
+
+<time>
+
+Represents time/date. Attributes: datetime.
+
+<p>Meeting on <time datetime="2025-09-11">Sept 11, 2025</time></p>
+
+
+---
+
+✅ Combined Section-11 Example
+
+<p><strong>Warning!</strong> This is <em>very important</em>.</p>
+<p>Formula: E = mc<sup>2</sup></p>
+<p>Shortcut: <kbd>Ctrl+S</kbd></p>
+<p><abbr title="HyperText Markup Language">HTML</abbr></p>
+
+
+---
+
+📘 Section 12 — Miscellaneous & Interactive
+
+<details> & <summary>
+
+Disclosure widget.
+
+<details>
+  <summary>Read more</summary>
+  <p>Hidden content here...</p>
+</details>
+
+
+---
+
+<dialog>
+
+Defines a dialog box. Attributes: open.
+
+<dialog open>
+  <p>This is a dialog window</p>
+</dialog>
+
+
+---
+
+<canvas>
+
+Used for drawing graphics with JS. Attributes: width, height.
+
+<canvas id="myCanvas" width="200" height="100"></canvas>
+
+
+---
+
+<iframe>
+
+Embeds another page. Attributes:
+
+src: URL
+
+width, height
+
+name: target name
+
+loading: lazy/eager
+
+allowfullscreen: fullscreen allowed
+
+
+<iframe src="https://example.com" width="400" height="300"></iframe>
+
+
+---
+
+<script>
+
+Embeds or links JavaScript. Attributes:
+
+src: external file
+
+type: MIME type (default = text/javascript)
+
+async / defer: loading behavior
+
+
+<script src="app.js" defer></script>
+
+
+---
+
+<noscript>
+
+Fallback content when JS is disabled.
+
+<noscript>Your browser does not support JavaScript!</noscript>
+
+
+---
+
+<template>
+
+Holds reusable hidden HTML.
+
+<template id="card">
+  <h2>Template Content</h2>
+</template>
+
+
+---
+
+✅ Combined Section-12 Example
+
+<details>
+  <summary>FAQ</summary>
+  <p>Answer to question.</p>
+</details>
+
+<dialog open>
+  <p>Login successful</p>
+</dialog>
+
+<iframe src="https://example.com" width="300" height="200"></iframe>
+
+<noscript>Please enable JavaScript</noscript>
+
+
+---
+
+✨ That completes Sections 9–12 with explanations + commented code!
