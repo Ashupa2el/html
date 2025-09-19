@@ -1,0 +1,12 @@
+table{
+                border: ridge rgb(27, 210, 223);
+            }
+            th{
+                background-color: rgb(223, 169, 232);
+                padding: 10px;
+            }
+            td{
+                border-collapse: collapse;
+                background-color:rgb(204, 164, 164);
+                padding: 10px;
+            }

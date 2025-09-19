@@ -4,18 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label{
+            color: lime;
+        }
+        .a{
+            display: flex;
+        }
+    </style>
 </head>
 <body>
     <form>
         <fieldset>
             <legend>Student Details</legend>
-           name:<input type="text" placeholder="Enter a name" maxlength="15"><br>
-           password:<input type="password"><br>
-           message:<br>
-           <textarea rows="5" cols="10"></textarea><br>
+            <label class="a">name</label>
+            <input type="text" placeholder="Enter a name" maxlength="15"><br><br>
+            <label class="a">password</label>
+            <input type="password"><br><br>
+            <div>
+           <label class="a">message:</label>
+           <textarea rows="5" cols="10"></textarea>
+            </div>
+           <br>
         <select name="UP">
             <optgroup label="UP">UP</optgroup>
-            <option value="mathura"> Mathura</option>
+            <option value="mathura">mathura</option>
             <option value="noida">Noida</option>
             <optgroup label="Biahr">Bihar</optgroup>
             <option value="Kaimur">Kaimur</option>

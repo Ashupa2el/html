@@ -7,7 +7,18 @@
                 border-collapse: collapse;
                 margin: 20px auto;
             }
-            th,td{
+            caption{
+                font-weight: bold;
+                caption-side: top;
+                margin-bottom: 10px;
+            }
+            th{
+                border: 1px solid;
+                padding: 10px;
+                text-align: center;
+            }
+            td{
+                background-color: aquamarine;
                 border: 1px solid;
                 padding: 10px;
                 text-align: center;
@@ -15,16 +26,16 @@
         </style>
     </head>
     <body>
-        <center> <caption> Student Details </caption></center>
         <table border="1px">
-            <tr>
+            <caption> Student Details </caption>
+            <tr style="background-color: rgb(91, 169, 217);">
                 <th>Name</th>
                 <th>Branch</th>
-                <th>Maks (%)</th>
+                <th>Marks (%)</th>
             </tr>
             <tr>
                 <td>Rahul</td>
-                <td rowspan="2">AIML</td>
+                <td rowspan="2" style="background-color: rgb(196, 242, 255);">AIML</td>
                 <td>80</td>
                 
             </tr>

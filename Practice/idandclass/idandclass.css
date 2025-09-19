@@ -1,0 +1,14 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color: aqua;
+}
+#ap1{
+    font-size: xx-large;
+}
+.ap2{
+    font-size: smaller;
+}
