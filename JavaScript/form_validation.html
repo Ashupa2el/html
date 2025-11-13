@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function formvalidation()
+        {
+            var a=document.getElementById("username").value;
+            var b=document.getElementById("passward").value;
+            if(a=="" && b=="")
+                {
+                    alert("Both field should not be empty!");
+                    return false;
+                }
+            if(a=="")
+                {
+                    alert("Name can not be blank");
+                    return false;
+                }
+            else if(b=="")
+            {
+                alert("Passward can not be blank");
+                return false;
+            }
+            else
+                {
+                    alert("Submitted successfully...");
+                    return true;
+                }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return formvalidation()" action="form_validation.html">
+        Name: <input type="text" id="username" placeholder="Enter your name"><br><br>
+        Passward:<input type="password" id="passward" placeholder="Enter your passward"><br><br>
+        <input type="submit">
+        <!-- onclick="formvalidation()" -->
+    </form>
+</body>
+</html>
