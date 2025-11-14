@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+function formvalidation(){
+    var a = document.getElementById("username").value;
+    var b = document.getElementById("email").value;
+
+    if(a === "" && b === ""){
+        alert("All fields are mandatory");
+        return false;
+    }
+    if(a === ""){
+        alert("Name is empty");
+        return false;
+    }
+    if(b === ""){
+        alert("Email is mandatory");
+        return false;
+    }
+
+    alert("All fields are filled");
+    return true;
+}
+</script>
+</head>
+
+<body>
+<form action="test.html" name="myform" onsubmit="return formvalidation()">
+    Enter the username: <input type="text" id="username" placeholder="username"><br>
+    Enter the email: <input type="email" id="email" placeholder="enter the email"><br>
+    <input type="submit">
+</form>
+</body>
+</html>

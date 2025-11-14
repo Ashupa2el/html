@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validation Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        input[type="email"].valid {
+            border-color: #27ae60;
+            background-color: #f0fff4;
+        }
+        
+        input[type="email"].invalid {
+            border-color: #e74c3c;
+            background-color: #fff5f5;
+        }
+        
+        .message {
+            margin-top: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .message.error {
+            color: #e74c3c;
+            display: block;
+        }
+        
+        .message.success {
+            color: #27ae60;
+            display: block;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .info {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .info strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Validation</h1>
+        
+        <form id="emailForm" novalidate>
+            <div class="form-group">
+                <label for="email">Enter Your Email:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="example@domain.com"
+                    required
+                >
+                <div class="message" id="message"></div>
+            </div>
+            
+            <button type="submit" id="submitBtn">Validate Email</button>
+        </form>
+        
+        <div class="info">
+            <strong>Validation Rules:</strong>
+            <ul>
+                <li>Email must contain @ symbol</li>
+                <li>Must have domain name after @</li>
+                <li>Must have valid extension (.com, .org, etc.)</li>
+                <li>No spaces allowed</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Email validation regex pattern
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // More strict regex pattern
+        const strictEmailRegex = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        const emailInput = document.getElementById('email');
+        const messageDiv = document.getElementById('message');
+        const form = document.getElementById('emailForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // Real-time validation as user types
+        emailInput.addEventListener('input', function() {
+            validateEmail(this.value);
+        });
+        
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            
+            if (validateEmail(email)) {
+                messageDiv.textContent = '✓ Email is valid! Form submitted successfully.';
+                messageDiv.className = 'message success';
+                submitBtn.disabled = true;
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    form.reset();
+                    messageDiv.className = 'message';
+                    messageDiv.textContent = '';
+                    emailInput.className = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }
+        });
+        
+        // Email validation function
+        function validateEmail(email) {
+            // Clear previous message
+            messageDiv.className = 'message';
+            messageDiv.textContent = '';
+            
+            // If email is empty
+            if (email === '') {
+                emailInput.className = '';
+                return false;
+            }
+            
+            // Check if email has spaces
+            if (email.includes(' ')) {
+                messageDiv.textContent = '✗ Email cannot contain spaces';
+                messageDiv.className = 'message error';
+                emailInput.className = 'invalid';
+                return false;
+            }
+            
+            // Check basic format
+            if (!emailRegex.test(email)) {
+                messageDiv.textContent = '✗ Please enter a valid email format';
+                messageDiv.className = 'message error';
+                emailInput.className = 'invalid';
+                return false;
+            }
+            
+            // Check strict format
+            if (!strictEmailRegex.test(email)) {
+                messageDiv.textContent = '✗ Email format is not standard';
+                messageDiv.className = 'message error';
+                emailInput.className = 'invalid';
+                return false;
+            }
+            
+            // If all validations pass
+            messageDiv.textContent = '✓ Email is valid';
+            messageDiv.className = 'message success';
+            emailInput.className = 'valid';
+            return true;
+        }
+        
+        // Alternative: Using HTML5 Email validation
+        function validateEmailHTML5(email) {
+            const emailField = emailInput;
+            if (!emailField.validity.valid) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
