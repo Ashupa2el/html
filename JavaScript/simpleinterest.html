@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function simpleInterest()
+        {
+            var principal=parseFloat(document.getElementById("principal").value);
+            var rate=parseFloat(document.getElementById("rate").value);
+            var time=parseFloat(document.getElementById("time").value);
+
+            var interest=(principal*rate*time)/100;
+            alert("The Simple Interest is: " + interest);
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return simpleInterest()" action="simpleinterest.html">
+        Principal Amount: <input type="number" id="principal" placeholder="Enter principal amount"><br><br>
+        Rate of Interest: <input type="number" id="rate" placeholder="Enter rate of interest"><br><br>
+        Time (in years): <input type="number" id="time" placeholder="Enter time in years"><br><br>
+        <input type="submit" value="Calculate Simple Interest">
+    </form>
+    
+</body>
+</html>
