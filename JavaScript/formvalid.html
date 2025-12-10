@@ -4,8 +4,9 @@
 function formvalidation(){
     var a = document.getElementById("username").value;
     var b = document.getElementById("email").value;
+    var c = document.getElementById("phone").value;
 
-    if(a === "" && b === ""){
+    if(a === "" || b === "" || b=== ""){
         alert("All fields are mandatory");
         return false;
     }
@@ -17,6 +18,10 @@ function formvalidation(){
         alert("Email is mandatory");
         return false;
     }
+    if(c === ""){
+        alert("Phone is mandatory");
+        return false;
+    }
 
     alert("All fields are filled");
     return true;
@@ -26,8 +31,9 @@ function formvalidation(){
 
 <body>
 <form action="test.html" name="myform" onsubmit="return formvalidation()">
-    Enter the username: <input type="text" id="username" placeholder="username"><br>
-    Enter the email: <input type="email" id="email" placeholder="enter the email"><br>
+    Username: <input type="text" id="username" placeholder="username"><br><br>
+    Email: <input type="email" id="email" placeholder="enter the email"><br><br>
+    Phone no.: <input type="number" id="phone" placeholder="enter phone number"><br><br>
     <input type="submit">
 </form>
 </body>

@@ -5,37 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function formvalidation()
-        {
-            var a=document.getElementById("username").value;
-            var b=document.getElementById("passward").value;
-            if(a=="" && b=="")
-                {
-                    alert("Both field should not be empty!");
-                    return false;
-                }
-            if(a=="")
-                {
-                    alert("Name can not be blank");
-                    return false;
-                }
-            else if(b=="")
-            {
-                alert("Passward can not be blank");
+    function formvalidation() {
+        const fields = ["username", "passward", "email", "phone"];
+        const messages = {
+            username: "Name cannot be blank",
+            passward: "Password cannot be blank",
+            email: "Email cannot be blank",
+            phone: "Phone number cannot be blank"
+        };
+
+        for (let id of fields) {
+            const value = document.getElementById(id).value;
+            if (!value) {
+                alert(messages[id]);
                 return false;
             }
-            else
-                {
-                    alert("Submitted successfully...");
-                    return true;
-                }
         }
-    </script>
+
+        alert("Submitted successfully...");
+        return true;
+    }
+</script>
 </head>
 <body>
     <form onsubmit="return formvalidation()" action="form_validation.html">
         Name: <input type="text" id="username" placeholder="Enter your name"><br><br>
         Passward:<input type="password" id="passward" placeholder="Enter your passward"><br><br>
+        Email: <input type="email" id="email" placeholder="Enter your email"><br><br>
+        Phone Number: <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
         <input type="submit">
         <!-- onclick="formvalidation()" -->
     </form>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+    <title>Table Example</title>
+    <script>
+        function printTableData() {
+            var table = document.getElementById("myTable");
+            var i;
+            var result = "";
+            for (i = 1; i <= 10; i++) {
+                var n = Number(table.value) || 0;
+                var row = n + " x " + i + " = " + (n * i) + "<br>";
+                result += row;
+                // display in the paragraph (use the first <p> on the page)
+                document.getElementsByTagName('p')[0].innerHTML = result;
+            }   
+        }
+    </script>
+    </head>
+    <body>
+        <form>
+            Enter any number" <input type="number" placeholder="enter any number" id="myTable"><br><br>
+            <input type="button" value="check" onclick="printTableData()"><br><br>
+            <p id="myTable"></p>
+        </form>
+    </body>
+</html>

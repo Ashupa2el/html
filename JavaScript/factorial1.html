@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>hello</title>
+</head>
+<body>
+    <script>
+        let number = parseInt(prompt("Enter a number"));
+        function calculateFactorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            else {
+                return n * calculateFactorial(n - 1);
+            }
+        }
+        if (isNaN(number) || number < 0) {
+            alert("Please enter a positive number.");
+        }
+        else {
+            let result = calculateFactorial(number);
+            alert("The factorial of " + number + "is: " + result);
+        }
+    </script>
+</body>
+
+</html>

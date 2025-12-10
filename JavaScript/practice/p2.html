@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>p2</title>
+    </head>
+    <body>
+        <script>
+            function formValidate(){
+                let a = document.getElementById("name").value;
+                let b = document.getElementById("age").value;
+                let c = document.getElementById("phone").value;
+                let d = document.getElementById("email").value;
+                let e = document.getElementById("password").value;
+                if(a === "" || b === "" || c=== "" || d === "" || e === ""){
+                    alert("All fields are mandatory");
+                    return false;
+                }
+                if(b<1){
+                    alert("Enter valid age");
+                    return false;
+                }
+                else if(c.length != 10){
+                    alert("Enter valid Phone number");
+                    return false;
+                }
+                else if(){
+                }
+                else{
+                alert("Form submitted succefully!");
+                return true;
+                }
+            }
+
+        </script>
+        <form onsubmit="return formValidate()">
+            Name : <input type="text" id="name" placeholder="Enter your name"><br><br>
+            Age : <input type="number" id="age" placeholder="Enter your age"><br><br>
+            Phone : <input type="tel" id="phone" placeholder="Enter phone number"><br><br>
+            Email : <input type="email" id="email" placeholder="Enter your email"><br><br>
+            Passward : <input type="password" id="password" placeholder="Enter password"><br><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>

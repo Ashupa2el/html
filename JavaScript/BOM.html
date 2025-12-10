@@ -1,0 +1,19 @@
+<html>
+    <Body>
+        <p id="res"></p>
+    </Body>
+    <head>
+        <script>
+            var details = "Browser CodeName: " + navigator.appCodeName + "<br>" +
+                          "Browser Name: " + navigator.appName + "<br>" +
+                          "Browser Version: " + navigator.appVersion + "<br>" +
+                          "Cookies Enabled: " + navigator.cookieEnabled + "<br>" +
+                          "Platform: " + navigator.platform + "<br>" +
+                          "User-agent header: " + navigator.userAgent + "<br>" +
+                          "language: " + navigator.language + "<br>" +
+                          "screen Height: " + screen.height + "<br>" +
+                          "screen Width: " + screen.width + "<br>" ;
+            document.getElementById("res").innerHTML = details;
+        </script>
+    </head>
+</html>
